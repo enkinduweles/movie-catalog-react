@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, memo, useCallback } from "react";
 import { api } from "../services/api";
 import { Button } from "./Button";
 
@@ -29,10 +29,11 @@ export function SideBar({onClickButton, selectedGenreId}: SideBarProps) {
         <div className="buttons-container">
           {genres.map(genre => (
             <Button
+              idBtn={genre.id}
               key={String(genre.id)}
               title={genre.title}
               iconName={genre.name}
-              onClick={() => onClickButton(genre.id)}
+              onClickButton={onClickButton}
               selected={selectedGenreId === genre.id}
             />
           ))}
